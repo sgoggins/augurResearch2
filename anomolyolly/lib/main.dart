@@ -4,36 +4,28 @@
 
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(Nav2App());
+}
 
-/// This is the main application widget.
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  static const String _title = 'Flutter Code Sample';
-
+class Nav2App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: _title,
-      home: MyStatefulWidget(),
+    return MaterialApp(
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/createUser': (context) => CreateUserScreen(),
+        '/repoList': (context) => RepoListScreen(),
+        '/preferences': (context) => PreferencesScreen(),
+        '/notification': (context) => NotificationScreen(),
+        '/yourRepos': (context) => YourReposScreen(),
+      },
     );
   }
 }
 
-// This is the stateful widget that the main application instantiates.
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-
-  @override
-  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
-}
-
-// This is the private State class that goes with MyStatefulWidget.
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  late TextEditingController _controller;
-
-  // login page
+// login page
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,22 +49,18 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         FlatButton(
           child: Text('Create an Account'),
           onPressed: () {
-            Navigator.push(
+            Navigator.pushNamed(
               context,
-              MaterialPageRoute(builder: (context) {
-                return CreateUserScreen();
-              }),
+              '/createUser',
             );
           },
         ),
         FlatButton(
           child: Text('Login!'),
           onPressed: () {
-            Navigator.push(
+            Navigator.pushNamed(
               context,
-              MaterialPageRoute(builder: (context) {
-                return RepoListScreen();
-              }),
+              '/repoList',
             );
           },
         ),
@@ -161,45 +149,12 @@ class RepoListScreen extends StatelessWidget {
       appBar: AppBar(),
       body: Center(
         child: FlatButton(
-          child: Text('Logout!'),
+          child: Text('Go to preferences!'),
           onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-    );
-  }
-}
-
-// repo list page
-class PreferencesScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: FlatButton(
-          child: Text('What do you want to be notified about?'),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-    );
-  }
-}
-
-// repo list page
-class NotificationScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: FlatButton(
-          child: Text('You will be notified when done!'),
-          onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushNamed(
+              context,
+              '/preferences',
+            );
           },
         ),
       ),
@@ -212,15 +167,164 @@ class YourReposScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(),
+        body: new Container(
+          child: FlatButton(
+            child: Text('Go to notification page'),
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                '/notification',
+              );
+            },
+          ),
+        ));
+  }
+}
+
+// repo list page
+class NotificationScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       appBar: AppBar(),
       body: Center(
+        //child: Text("What do you want to see for this repo?"),
         child: FlatButton(
-          child: Text('Your repos!'),
+          child: Text('go to your repo list'),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushNamed(
+              context,
+              '/yourRepos',
+            );
           },
         ),
       ),
     );
+  }
+}
+
+bool isSwitched = false;
+var textValue = 'Switch is OFF';
+
+void toggleSwitch(bool value) {
+  if (isSwitched == false) {
+    setState(() {
+      isSwitched = true;
+      textValue = 'Switch Button is ON';
+    });
+    print('Switch Button is ON');
+  } else {
+    setState(() {
+      isSwitched = false;
+      textValue = 'Switch Button is OFF';
+    });
+    print('Switch Button is OFF');
+  }
+}
+
+void setState(Null Function() param0) {}
+
+// repo list page
+class PreferencesScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(),
+        body: Center(
+          child: new Column(children: [
+            new Container(
+              child: new Text(
+                'What do you want to see for this repo?',
+                textAlign: TextAlign.center,
+              ),
+            ),
+            new Container(
+              child: new Row(children: [
+                new Text('Issues'),
+                Switch(value: isSwitched, onChanged: toggleSwitch),
+              ]),
+            ),
+            new Container(
+              child: new Row(children: [
+                new Container(
+                  child: new Row(children: [
+                    Slider(
+                      activeColor: Colors.blueGrey,
+                      inactiveColor: Colors.blue,
+                      value: 10,
+                      min: 0,
+                      max: 100,
+                      divisions: 100,
+                      label: 10.round().toString(),
+                      onChanged: (double value) {
+                        setState(() {});
+                      },
+                    ),
+                  ]),
+                )
+              ]),
+            ),
+            new Container(
+              child: new Row(children: [
+                new Text('Pull Requests'),
+                Switch(value: isSwitched, onChanged: toggleSwitch),
+              ]),
+            ),
+            new Container(
+              child: new Row(children: [
+                new Container(
+                  child: new Row(children: [
+                    Slider(
+                      activeColor: Colors.blueGrey,
+                      inactiveColor: Colors.blue,
+                      value: 10,
+                      min: 0,
+                      max: 100,
+                      divisions: 100,
+                      label: 10.round().toString(),
+                      onChanged: (double value) {
+                        setState(() {});
+                      },
+                    ),
+                  ]),
+                )
+              ]),
+            ),
+            new Container(
+              child: new Row(children: [
+                new Text('Committs'),
+                Switch(value: isSwitched, onChanged: toggleSwitch),
+              ]),
+            ),
+            new Container(
+              child: new Row(children: [
+                Slider(
+                  activeColor: Colors.blueGrey,
+                  inactiveColor: Colors.blue,
+                  value: 10,
+                  min: 0,
+                  max: 100,
+                  divisions: 100,
+                  label: 10.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {});
+                  },
+                ),
+              ]),
+            ),
+            new Container(
+              child: FlatButton(
+                child: Text('go to your repo list'),
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/notification',
+                  );
+                },
+              ),
+            ),
+          ]),
+        ));
   }
 }
