@@ -41,8 +41,8 @@ class _YourReposState extends State<YourReposScreen> {
               return Text('${snapshot.error}');
             }
 
-              // By default, show a loading spinner.
-              return const CircularProgressIndicator();
+            // By default, show a loading spinner.
+            return const CircularProgressIndicator();
             }
         ),
         ),
@@ -51,7 +51,13 @@ class _YourReposState extends State<YourReposScreen> {
 
   List<Widget>? getRepositoryRows(List<Repo>? repos) {
     return repos?.map((repo) {
-      return Text(repo.name);
+      return ListTile(
+        leading: CircleAvatar(
+          backgroundImage: NetworkImage("https://helloartsy.com/wp-content/uploads/kids/marine_life/octopus_cartoon_drawing/octopus-cartoon-drawing_step-6.jpg")
+        ),
+        title: Text(repo.name),
+        subtitle: Text("Commits: ${repo.allTimeCommits?.toInt()} Issues: ${repo.allTimeIssues?.toInt()}"),
+      );
     }).toList();
 
   }
