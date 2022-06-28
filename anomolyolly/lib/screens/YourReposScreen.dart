@@ -12,6 +12,8 @@ class YourReposScreen extends StatefulWidget {
   @override
   _YourReposState createState() => _YourReposState();
 
+
+
 }
 
 class _YourReposState extends State<YourReposScreen> {
@@ -69,7 +71,13 @@ class _YourReposState extends State<YourReposScreen> {
                     }
 
                     // By default, show a loading spinner.
-                    return const CircularProgressIndicator();
+                    return const Center(
+                      child: SizedBox(
+                        width: 30,
+                        height: 30,
+                        child: CircularProgressIndicator(),
+                      )
+                    );
                   }
               ),
             )
