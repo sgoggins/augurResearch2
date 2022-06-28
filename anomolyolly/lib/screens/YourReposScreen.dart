@@ -24,6 +24,8 @@ class _YourReposState extends State<YourReposScreen> {
     futureRepos = fetchRepos(Client());
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,12 +55,15 @@ class _YourReposState extends State<YourReposScreen> {
               child: FutureBuilder<List<Repo>>(
                   future: futureRepos,
                   builder: (context, snapshot) {
-                    List<Widget>? repositoryRows;
                     if (snapshot.hasData) {
-                      repositoryRows = getRepositoryRows(snapshot.data);
-                    }
-                    if (repositoryRows != null) {
-                      return ListView(children: repositoryRows);
+                      return ListView.separated(
+                        padding: const EdgeInsets.all(8),
+                        itemCount: snapshot.data?.length ?? 0,
+                        itemBuilder: (BuildContext context, int index) {
+                          return getRepositoryRow(snapshot.data![index]);
+                        },
+                        separatorBuilder: (BuildContext context, int index) => getRepositoryDivider(snapshot.data![index]),
+                      );
                     } else if (snapshot.hasError) {
                       return Text('${snapshot.error}');
                     }
@@ -74,16 +79,23 @@ class _YourReposState extends State<YourReposScreen> {
     );
   }
 
-  List<Widget>? getRepositoryRows(List<Repo>? repos) {
-    return repos?.map((repo) {
+  Widget getRepositoryDivider(Repo repo) {
+    if (repo.name.toLowerCase().contains(searchString)) {
+      return Divider();
+    } else {
+      return Container();
+    }
+  }
+
+  Widget getRepositoryRow(Repo repo) {
+    if(repo.name.toLowerCase().contains(searchString)) {
       return ListTile(
         leading: CircleAvatar(
-          backgroundImage: NetworkImage("https://helloartsy.com/wp-content/uploads/kids/marine_life/octopus_cartoon_drawing/octopus-cartoon-drawing_step-6.jpg")
+            backgroundImage: NetworkImage("https://helloartsy.com/wp-content/uploads/kids/marine_life/octopus_cartoon_drawing/octopus-cartoon-drawing_step-6.jpg")
         ),
         title: Text(repo.name),
         subtitle: Text("Commits: ${repo.allTimeCommits?.toInt()} Issues: ${repo.allTimeIssues?.toInt()}"),
       );
-    }).toList();
-
+    } else return Container();
   }
 }
