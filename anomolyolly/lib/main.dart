@@ -1,4 +1,4 @@
-import 'package:anomolyolly/screens/YourReposScreen.dart';
+import 'package:anomolyolly/screens/ReposListScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +10,7 @@ class AnomolyOllyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => YourReposScreen(),
+        '/': (context) => ReposListScreen(),
         // '/createUser': (context) => CreateUserScreen(),
         // '/repoList': (context) => RepoListScreen(),
         // '/preferences': (context) => PreferencesScreen(),
