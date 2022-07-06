@@ -1,3 +1,4 @@
+import 'package:anomolyolly/screens/NotificationScreen.dart';
 import 'package:anomolyolly/screens/ReposListScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,14 +14,14 @@ class AnomolyOllyApp extends StatelessWidget {
         primaryColor: const Color(0xff4A7BA6),
         appBarTheme: AppBarTheme(
           color: const Color(0xff4A7BA6),
-        )
+        ),
       ),
       routes: {
         '/': (context) => ReposListScreen(),
         // '/createUser': (context) => CreateUserScreen(),
         // '/repoList': (context) => RepoListScreen(),
         // '/preferences': (context) => PreferencesScreen(),
-        // '/notification': (context) => NotificationScreen(),
+        '/notification': (context) => NotificationScreen(),
         // '/yourRepos': (context) => YourReposScreen(),
       },
     );

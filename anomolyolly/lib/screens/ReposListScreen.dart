@@ -84,11 +84,30 @@ class _ReposListState extends State<ReposListScreen> {
                     );
                   }
               ),
-            )
-
+            ),
+            getSaveButtonIfReposSelected()
           ]
       ),
     );
+  }
+
+  Widget getSaveButtonIfReposSelected() {
+    if (selectedRepos.isEmpty) {
+      return Container();
+    } else {
+      return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+          child: TextButton(
+              style: TextButton.styleFrom(
+                minimumSize: Size.fromHeight(40),
+                primary: Colors.white,
+                backgroundColor: Color(0xff9799BA),
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/notification');
+              },
+              child: Text("SAVE")));
+    }
   }
 
   Widget getRepositoryDivider(Repo repo) {
