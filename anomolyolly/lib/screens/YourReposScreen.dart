@@ -17,7 +17,8 @@ class YourReposScreen extends StatelessWidget {
               );
             },
           ),
-        ));
+        )
+    );
   }
 }
 

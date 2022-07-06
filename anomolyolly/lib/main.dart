@@ -1,5 +1,6 @@
 import 'package:anomolyolly/screens/NotificationScreen.dart';
 import 'package:anomolyolly/screens/ReposListScreen.dart';
+import 'package:anomolyolly/screens/YourReposScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,7 +23,7 @@ class AnomolyOllyApp extends StatelessWidget {
         // '/repoList': (context) => RepoListScreen(),
         // '/preferences': (context) => PreferencesScreen(),
         '/notification': (context) => NotificationScreen(),
-        // '/yourRepos': (context) => YourReposScreen(),
+        '/yourRepos': (context) => YourReposScreen(),
       },
     );
   }
