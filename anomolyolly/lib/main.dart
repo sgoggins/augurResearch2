@@ -9,6 +9,12 @@ class AnomolyOllyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: const Color(0xff4A7BA6),
+        appBarTheme: AppBarTheme(
+          color: const Color(0xff4A7BA6),
+        )
+      ),
       routes: {
         '/': (context) => ReposListScreen(),
         // '/createUser': (context) => CreateUserScreen(),
