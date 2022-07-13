@@ -1,10 +1,16 @@
 import 'package:anomolyolly/screens/NotificationScreen.dart';
 import 'package:anomolyolly/screens/ReposListScreen.dart';
+import 'package:anomolyolly/screens/SignInUpScreen.dart';
 import 'package:anomolyolly/screens/YourReposScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(AnomolyOllyApp());
+  runApp(
+      ChangeNotifierProvider(
+        create: (context) => ApplicationState(),
+        builder: (context, _) => AnomolyOllyApp(),
+      ));
 }
 
 class AnomolyOllyApp extends StatelessWidget {
@@ -18,7 +24,7 @@ class AnomolyOllyApp extends StatelessWidget {
         ),
       ),
       routes: {
-        '/': (context) => ReposListScreen(),
+        '/': (context) => SignInUpScreen(),
         // '/createUser': (context) => CreateUserScreen(),
         // '/repoList': (context) => RepoListScreen(),
         // '/preferences': (context) => PreferencesScreen(),
@@ -28,5 +34,6 @@ class AnomolyOllyApp extends StatelessWidget {
     );
   }
 }
+
 
 

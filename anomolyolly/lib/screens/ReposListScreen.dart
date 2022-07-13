@@ -39,7 +39,7 @@ class _ReposListState extends State<ReposListScreen> {
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text("Please select the repos you are interested in watching",
+              child: Text("Select the repos you'd like to be notified about",
                   style: Theme.of(context).textTheme.headline6,
             )),
             Padding(
