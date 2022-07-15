@@ -2,6 +2,7 @@ import 'package:anomolyolly/screens/NotificationScreen.dart';
 import 'package:anomolyolly/screens/ReposListScreen.dart';
 import 'package:anomolyolly/screens/SignInUpScreen.dart';
 import 'package:anomolyolly/screens/YourReposScreen.dart';
+import 'package:anomolyolly/state/ApplicationState.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -6,6 +6,7 @@ import 'package:http/http.dart';
 import 'package:anomolyolly/data/Repo.dart';
 
 import '../data/RepoListService.dart';
+import '../widgets/MyWidgets.dart';
 
 class ReposListScreen extends StatefulWidget {
   late Future<List<Repo>> futureRepos;
@@ -28,9 +29,7 @@ class _ReposListState extends State<ReposListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Repos List")
-      ),
+      appBar: MyWidgets.getAppBar("Sign In or Sign Up"),
       body: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
