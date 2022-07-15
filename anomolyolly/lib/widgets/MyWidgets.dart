@@ -1,6 +1,10 @@
 
+import 'package:anomolyolly/screens/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../state/ApplicationState.dart';
 
 class Header extends StatelessWidget {
   const Header(this.heading, {super.key});
@@ -69,13 +73,19 @@ class MyWidgets {
     return AppBar(
         title: Text(title),
         actions: <Widget>[
-          IconButton(
-              icon: Icon(
-                  Icons.logout),
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-              }
-          )
+          Consumer<ApplicationState>(builder: (context, appState, child) {
+            if(appState.loginState == ApplicationLoginState.loggedIn) {
+              return IconButton(
+                  icon: Icon(
+                      Icons.logout),
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut();
+                  }
+              );
+            }  else {
+              return Container();
+            }
+          })
         ]
     );
   }
