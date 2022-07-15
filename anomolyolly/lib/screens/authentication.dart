@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../navigation/NavigationRoutes.dart';
+
 enum ApplicationLoginState {
   emailAddress,
   register,
@@ -63,15 +65,15 @@ class Authentication extends StatelessWidget {
             cancelRegistration();
           },
           registerAccount: (
-              email,
-              displayName,
-              password,
-              ) {
+            email,
+            displayName,
+            password,
+          ) {
             registerAccount(
                 email,
                 displayName,
                 password,
-                    (e) =>
+                (e) =>
                     _showErrorDialog(context, 'Failed to create account', e));
           },
         );
@@ -82,9 +84,10 @@ class Authentication extends StatelessWidget {
               padding: const EdgeInsets.only(left: 24, bottom: 8),
               child: StyledButton(
                 onPressed: () {
-                  signOut();
+                  // todo: check if user has repos. If so nav to your repos
+                  Navigator.pushNamed(context, NavigationRoutes.REPOS_LIST);
                 },
-                child: const Text('LOGOUT'),
+                child: const Text('CONTINUE'),
               ),
             ),
           ],

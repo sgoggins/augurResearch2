@@ -5,6 +5,8 @@ import 'package:anomolyolly/screens/YourReposScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'navigation/NavigationRoutes.dart';
+
 void main() {
   runApp(
       ChangeNotifierProvider(
@@ -24,9 +26,9 @@ class AnomolyOllyApp extends StatelessWidget {
         ),
       ),
       routes: {
-        '/': (context) => SignInUpScreen(),
+        NavigationRoutes.SIGN_IN_UP: (context) => SignInUpScreen(),
         // '/createUser': (context) => CreateUserScreen(),
-        // '/repoList': (context) => RepoListScreen(),
+        NavigationRoutes.REPOS_LIST: (context) => ReposListScreen(),
         // '/preferences': (context) => PreferencesScreen(),
         '/notification': (context) => NotificationScreen(),
         '/yourRepos': (context) => YourReposScreen(),
