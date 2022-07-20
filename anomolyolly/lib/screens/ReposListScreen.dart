@@ -1,4 +1,6 @@
 // repo list page
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../data/Repo.dart';
@@ -96,6 +98,7 @@ class _ReposListState extends State<ReposListScreen> {
     } else {
       return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+
           child: TextButton(
               style: TextButton.styleFrom(
                 minimumSize: Size.fromHeight(40),
@@ -103,7 +106,14 @@ class _ReposListState extends State<ReposListScreen> {
                 backgroundColor: Color(0xff9799BA),
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed('/notification');
+                FirebaseFirestore.instance
+                    .collection('userWatchedRepos')
+                    .add(<String, dynamic>{
+                  'repoIdList': selectedRepos,
+                  'timestamp': DateTime.now().millisecondsSinceEpoch,
+                  'name': FirebaseAuth.instance.currentUser!.displayName,
+                  'userId': FirebaseAuth.instance.currentUser!.uid,
+                });
               },
               child: Text("SAVE")));
     }
