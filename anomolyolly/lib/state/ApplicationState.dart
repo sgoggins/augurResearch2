@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
+import '../data/FirebaseRepo.dart';
 import '../firebase_options.dart';
 import '../screens/authentication.dart';
 
@@ -11,6 +14,11 @@ class ApplicationState extends ChangeNotifier {
   ApplicationState() {
     init();
   }
+
+
+  StreamSubscription<QuerySnapshot>? _userReposSubscription;
+  UserRepos? _userRepos;
+  UserRepos? get userRepos => _userRepos;
 
   Future<void> init() async {
     await Firebase.initializeApp(
@@ -20,6 +28,18 @@ class ApplicationState extends ChangeNotifier {
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
         _loginState = ApplicationLoginState.loggedIn;
+        _userReposSubscription = FirebaseFirestore.instance
+            .collection('userWatchedRepos')
+            .snapshots()
+            .listen((snapshot) {
+              _userRepos = null;
+              if(snapshot.docs.isNotEmpty) {
+                List<dynamic>? dynamicReposList = snapshot.docs.first.data()['repoIdList'];
+                List<int>? userReposList = dynamicReposList?.cast<int>();
+                _userRepos = UserRepos(userReposList);
+              }
+          notifyListeners();
+        });
       } else {
         _loginState = ApplicationLoginState.emailAddress;
       }
