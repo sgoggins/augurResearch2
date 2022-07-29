@@ -36,7 +36,7 @@ class _ReposListState extends State<ReposListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyWidgets.getAppBar("Sign In or Sign Up"),
+      appBar: MyWidgets.getAppBar("Select Repos"),
       body: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,

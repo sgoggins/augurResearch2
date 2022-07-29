@@ -38,7 +38,7 @@ class _AnomolyOllyAppState extends State<AnomolyOllyApp> {
               NavigationRoutes.REPOS_LIST: (context) => ReposListScreen(saveRepos: (repos) => appState.addSavedRepos(repos)),
               // '/preferences': (context) => PreferencesScreen(),
               '/notification': (context) => NotificationScreen(),
-              NavigationRoutes.YOUR_REPOS: (context) => YourReposScreen(),
+              NavigationRoutes.YOUR_REPOS: (context) => YourReposScreen(savedRepos: appState.userRepos?.ids),
             },
           )
       )

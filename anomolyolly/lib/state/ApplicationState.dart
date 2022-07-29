@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-import '../data/FirebaseRepo.dart';
+import '../data/UserRepos.dart';
 import '../firebase_options.dart';
 import '../screens/authentication.dart';
 
@@ -42,6 +42,8 @@ class ApplicationState extends ChangeNotifier {
         });
       } else {
         _loginState = ApplicationLoginState.emailAddress;
+        _userReposSubscription = null;
+        _userReposSubscription?.cancel();
       }
       notifyListeners();
     });

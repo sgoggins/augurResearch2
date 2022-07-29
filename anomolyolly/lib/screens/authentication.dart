@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../data/UserRepos.dart';
 import '../navigation/NavigationRoutes.dart';
 import '../widgets/MyWidgets.dart';
 
@@ -13,6 +14,7 @@ enum ApplicationLoginState {
 class Authentication extends StatelessWidget {
   const Authentication({
     required this.loginState,
+    required this.userReposState,
     required this.email,
     required this.startLoginFlow,
     required this.verifyEmail,
@@ -23,6 +25,7 @@ class Authentication extends StatelessWidget {
   });
 
   final ApplicationLoginState loginState;
+  final UserRepos? userReposState;
   final String? email;
   final void Function() startLoginFlow;
   final void Function(
@@ -83,8 +86,11 @@ class Authentication extends StatelessWidget {
               padding: const EdgeInsets.only(left: 24, bottom: 8),
               child: StyledButton(
                 onPressed: () {
-                  // todo: check if user has repos. If so nav to your repos
-                  Navigator.pushNamed(context, NavigationRoutes.REPOS_LIST);
+                  if(userReposState != null && userReposState!.ids != null && userReposState!.ids!.isNotEmpty) {
+                    Navigator.pushNamed(context, NavigationRoutes.YOUR_REPOS);
+                  } else {
+                    Navigator.pushNamed(context, NavigationRoutes.REPOS_LIST);
+                  }
                 },
                 child: const Text('CONTINUE'),
               ),
