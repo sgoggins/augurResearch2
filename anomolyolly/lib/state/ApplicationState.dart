@@ -34,9 +34,13 @@ class ApplicationState extends ChangeNotifier {
             .listen((snapshot) {
               _userRepos = null;
               if(snapshot.docs.isNotEmpty) {
-                List<dynamic>? dynamicReposList = snapshot.docs.first.data()['repoIdList'];
-                List<int>? userReposList = dynamicReposList?.cast<int>();
-                _userRepos = UserRepos(userReposList);
+                snapshot.docs.forEach((document) {
+                  if(document.data()['userId'].toString() == (FirebaseAuth.instance.currentUser!.uid)) {
+                    List<dynamic>? dynamicReposList = document.data()['repoIdList'];
+                    List<int>? userReposList = dynamicReposList?.cast<int>();
+                    _userRepos = UserRepos(userReposList);
+                  }
+                });
               }
           notifyListeners();
         });
