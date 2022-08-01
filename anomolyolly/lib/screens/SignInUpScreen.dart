@@ -22,6 +22,7 @@ class SignInUpScreen extends StatelessWidget {
                 Authentication(
                   email: appState.email,
                   loginState: appState.loginState,
+                  userReposState: appState.userRepos,
                   startLoginFlow: appState.startLoginFlow,
                   verifyEmail: appState.verifyEmail,
                   signInWithEmailAndPassword: appState

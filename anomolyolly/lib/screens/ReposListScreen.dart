@@ -1,4 +1,6 @@
 // repo list page
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +10,13 @@ import 'package:http/http.dart';
 import 'package:anomolyolly/data/Repo.dart';
 
 import '../data/RepoListService.dart';
+import '../navigation/NavigationRoutes.dart';
 import '../widgets/MyWidgets.dart';
 
 class ReposListScreen extends StatefulWidget {
+  ReposListScreen({required this.saveRepos});
   late Future<List<Repo>> futureRepos;
+  final FutureOr<void> Function(List<int> repos) saveRepos;
 
   @override
   _ReposListState createState() => _ReposListState();
@@ -31,7 +36,7 @@ class _ReposListState extends State<ReposListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyWidgets.getAppBar("Sign In or Sign Up"),
+      appBar: MyWidgets.getAppBar("Select Repos"),
       body: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -105,15 +110,9 @@ class _ReposListState extends State<ReposListScreen> {
                 primary: Colors.white,
                 backgroundColor: Color(0xff9799BA),
               ),
-              onPressed: () {
-                FirebaseFirestore.instance
-                    .collection('userWatchedRepos')
-                    .add(<String, dynamic>{
-                  'repoIdList': selectedRepos,
-                  'timestamp': DateTime.now().millisecondsSinceEpoch,
-                  'name': FirebaseAuth.instance.currentUser!.displayName,
-                  'userId': FirebaseAuth.instance.currentUser!.uid,
-                });
+              onPressed: () async {
+                await widget.saveRepos(selectedRepos);
+                Navigator.pushNamed(context, NavigationRoutes.YOUR_REPOS);
               },
               child: Text("SAVE")));
     }
