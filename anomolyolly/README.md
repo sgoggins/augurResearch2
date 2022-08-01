@@ -1,16 +1,25 @@
 # anomolyolly
 
-A new Flutter project.
+Anomolyolly is a flutter application based on the augur dashboard to track the activity in different github repositories. The homepage for the dashboards is http://augur.chaoss.io. One example dashboard is included: http://augur.chaoss.io/repo/samples/react/overview
 
-## Getting Started
+The goal of building this application was to learn flutter while working towards the goal of getting mobile notifications about these repositories if there is an anomoly. There are two flows supported by the app at the moment.
 
-This project is a starting point for a Flutter application.
+# New User
 
-A few resources to get you started if this is your first Flutter project:
+- App launched
+- User enters email
+- User creates login information 
+- User continues to repository list page
+- User selects repositories to watch
+- User views selected repositories
+- User logs out
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+# Existing user
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- App launched
+- User enters email and password
+- User continues to my repositories page
+- User views already selected repositories
+- User logs out
+
+
