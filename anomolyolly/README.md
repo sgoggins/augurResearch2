@@ -22,4 +22,8 @@ The goal of building this application was to learn flutter while working towards
 - User views already selected repositories
 - User logs out
 
+View an android build at: 
+https://drive.google.com/file/d/1d-HA9AZt-yMz4iAjTwb36SX_AODGdNPt/view?usp=sharing
 
+Set up a flutter project to build and develop yourself: 
+https://docs.flutter.dev/get-started/install?gclid=CjwKCAjwlqOXBhBqEiwA-hhitB33DB-FSWSQACpNegIXH68C5Za15zOASgBrr_Dy8Gc7FSYyNCj-3xoCFi8QAvD_BwE&gclsrc=aw.ds
