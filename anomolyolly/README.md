@@ -22,6 +22,9 @@ The goal of building this application was to learn flutter while working towards
 - User views already selected repositories
 - User logs out
 
+Wireframes available at: 
+https://github.com/sgoggins/augurResearch2/blob/callie-main/Design%20Update%202_1_21.pdf
+
 View an android build at: 
 https://drive.google.com/file/d/1d-HA9AZt-yMz4iAjTwb36SX_AODGdNPt/view?usp=sharing
 
