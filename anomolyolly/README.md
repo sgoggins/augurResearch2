@@ -22,6 +22,9 @@ The goal of building this application was to learn flutter while working towards
 - User views already selected repositories
 - User logs out
 
+App demo video: 
+https://drive.google.com/file/d/12u5Jrv_OPS_wFzytN7DmcuhAR2OJwFRc/view?usp=sharing
+
 Wireframes available at: 
 https://github.com/sgoggins/augurResearch2/blob/callie-main/Design%20Update%202_1_21.pdf
 
@@ -30,3 +33,6 @@ https://drive.google.com/file/d/1d-HA9AZt-yMz4iAjTwb36SX_AODGdNPt/view?usp=shari
 
 Set up a flutter project to build and develop yourself: 
 https://docs.flutter.dev/get-started/install?gclid=CjwKCAjwlqOXBhBqEiwA-hhitB33DB-FSWSQACpNegIXH68C5Za15zOASgBrr_Dy8Gc7FSYyNCj-3xoCFi8QAvD_BwE&gclsrc=aw.ds
+
+Firebase Implementation based on codelab: 
+https://firebase.google.com/codelabs/firebase-get-to-know-flutter#0
